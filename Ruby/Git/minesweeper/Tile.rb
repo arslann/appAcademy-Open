@@ -3,6 +3,7 @@ class Tile
         @isBomb = bomb
         @flagged = false
         @revealed = false
+        @neighbors = 0
     end
 
     def reveal
@@ -17,6 +18,9 @@ class Tile
         @flagged = false
     end
 
-    
+    def neighbors
+        
+    end
+
 
 end
