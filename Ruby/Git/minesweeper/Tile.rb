@@ -1,5 +1,7 @@
 class Tile
-    def initialize(bomb)
+    attr_reader :isBomb
+    attr_accessor :neighbors
+    def initialize(bomb)   
         @isBomb = bomb
         @flagged = false
         @revealed = false
@@ -17,10 +19,4 @@ class Tile
     def unflag
         @flagged = false
     end
-
-    def neighbors
-        
-    end
-
-
 end
