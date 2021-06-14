@@ -9,7 +9,9 @@ class Tile
     end
 
     def reveal
-        @revealed = true
+        if @flagged == false
+            @revealed = true
+        end
     end
 
     def flag
