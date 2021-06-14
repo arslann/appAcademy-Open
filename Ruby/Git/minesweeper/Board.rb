@@ -6,6 +6,7 @@ class Board
         @board = Array.new(9) do
             Array.new(9) { Tile.new([false, false, true, false, false,false, false,false, false,false, false,false, false].sample) }
         end
+        bomb_counter
     end
 
     def bomb_counter
@@ -82,11 +83,6 @@ class Board
         square
     end
 
-    def reveal_tile(tile)
-        
-               
-    end
-
     def []=(pos, value)
         row, col = pos
         tile = @board[row][col]
@@ -97,7 +93,8 @@ class Board
         end
     end
 
-    def test_method(pos)
+    def reveal_tile(pos)
+        return false if @board[pos[0]][pos[1]].isBomb == true
         test = find_neighbors(pos)
         test.each do |k,v|
             test2 = find_neighbors(test[k])
@@ -113,25 +110,12 @@ class Board
             end
         end
     end
+
+    def win?
+
+    end
+
+    def lose?
+        
+    end
 end
-
-test = Board.new
-test.bomb_counter
-# p test.reveal_tile([1,1])
-# p test.find_neighbors([1,1])
-# p test.find_neighbors([1,1])
-# p test.find_neighbors([1,1])
-# p test.find_neighbors([1,1])
-test.test_method([0,1])
-#  test[[0,0]] = "r"
-#  test[[0,1]] = "r"
-#  test[[0,2]] = "r"
-#  test[[1,0]] = "r"
-#  test[[1,1]] = "r"
-#  test[[1,2]] = "r"
-#  test[[2,0]] = "r"
-#  test[[2,1]] = "r"
-#  test[[2,2]] = "r"
-# test[[0,1]] = "f"
-
-test.render
