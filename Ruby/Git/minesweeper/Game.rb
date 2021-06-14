@@ -10,17 +10,21 @@ class Game
 
         puts "Player enter two numbers representing a position in the format `r & f and position`"
         input = gets.chomp.split(' ')
-        action = input[0]
-        pos = input[1..-1].map(&:to_i)
+        
     end
 
     def play
-        until @board.win? || @board.lose?
-            
+        until @board.won? || @board.lost?
+            @board.render
+            input = get_pos
+            action = input[0]
+            pos = input[1..-1].map(&:to_i)
+            @board.reveal_tile(pos.rotate, action)
         end
+        puts "Game Over"
     end
 end
 
 test = Game.new
-p test.get_pos
+test.play
 

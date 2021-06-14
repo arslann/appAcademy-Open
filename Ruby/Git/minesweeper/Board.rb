@@ -3,6 +3,7 @@ require_relative "Tile.rb"
 class Board
     attr_reader :board
     def initialize
+        @gameover = false
         @board = Array.new(9) do
             Array.new(9) { Tile.new([false, false, true, false, false,false, false,false, false,false, false,false, false].sample) }
         end
@@ -93,8 +94,15 @@ class Board
         end
     end
 
-    def reveal_tile(pos)
-        return false if @board[pos[0]][pos[1]].isBomb == true
+    def reveal_tile(pos, action)
+        if @board[pos[1]][pos[0]].isBomb == true
+            @gameover = true
+            return
+        end
+        if action == "f"
+            @board[pos[0]][pos[1]].flag
+            return
+        end
         test = find_neighbors(pos)
         test.each do |k,v|
             test2 = find_neighbors(test[k])
@@ -111,11 +119,12 @@ class Board
         end
     end
 
-    def win?
-
+    def won?
+        @board.flatten.all? { |tile| tile.isBomb != tile.revealed }
     end
 
-    def lose?
-        
+    def lost?
+        return true if @gameover == true
+        @board.flatten.any? { |tile| tile.isBomb && tile.revealed }
     end
 end
