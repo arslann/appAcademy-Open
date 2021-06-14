@@ -27,11 +27,6 @@ class Board
                     end
                     
                     tile.neighbors += square.count {|ele| ele.isBomb == true}
-                    # square.each do |ele|
-                    #     if ele.isBomb == false
-                    #         ele.reveal
-                    #     end
-                    # end
                     square = []
                     n -= 1
                 end
