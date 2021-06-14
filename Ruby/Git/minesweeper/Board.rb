@@ -95,12 +95,12 @@ class Board
     end
 
     def reveal_tile(pos, action)
-        if @board[pos[1]][pos[0]].isBomb == true
+        if @board[pos[1]][pos[0]].isBomb == true && action != "f"
             @gameover = true
             return
         end
         if action == "f"
-            @board[pos[0]][pos[1]].flag
+            @board[pos[1]][pos[0]].flag
             return
         end
         test = find_neighbors(pos)
