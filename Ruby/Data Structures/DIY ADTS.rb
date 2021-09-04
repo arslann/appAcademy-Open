@@ -1,19 +1,20 @@
 class Stack
     def initialize
-        @array = []
+        @temper_array = []
     end
 
     def push(el)
-        array.push(el)
-        
+        @temper_array.push(el)
     end
 
     def pop 
-        array.pop
+        @temper_array.pop
     end
 
     def peek
-        array.last
+        @temper_array.last
     end
+
+    attr_reader :underlying_array
 
 end
